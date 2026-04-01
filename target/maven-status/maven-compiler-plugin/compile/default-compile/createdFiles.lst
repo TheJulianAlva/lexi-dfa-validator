@@ -1,5 +1,7 @@
+edu\ittol\is\automatas\lexi\core\AutomataEngine.class
+edu\ittol\is\automatas\lexi\gui\LexiUI$3.class
+edu\ittol\is\automatas\lexi\LexiApp.class
 edu\ittol\is\automatas\lexi\gui\LexiUI$1.class
 edu\ittol\is\automatas\lexi\gui\LexiUI.class
 edu\ittol\is\automatas\lexi\utils\ValidationUtils.class
-edu\ittol\is\automatas\lexi\core\AutomataEngine.class
-edu\ittol\is\automatas\lexi\LexiApp.class
+edu\ittol\is\automatas\lexi\gui\LexiUI$2.class

@@ -28,6 +28,12 @@ public class AutomataEngine {
     private final RunAutomaton runAutomaton;
 
     /**
+     * Autómata Finito base subyacente. Se preserva su referencia intacta para habilitar 
+     * operaciones estructurales o algebraicas avanzadas (ej. inferencia de ejemplos cortos, graficado DOT).
+     */
+    private final Automaton rawAutomaton;
+
+    /**
      * Inicializa el compilador del autómata, traduciendo iterativamente la expresión regular.
      * <p>
      * Posteriormente la estructura generada se minimiza a su versión ideal (Autómata Finito 
@@ -40,6 +46,10 @@ public class AutomataEngine {
         Automaton automaton = expr.toAutomaton();
         // Aplicar el proceso teórico de minimización de estados y transiciones
         automaton.minimize();
+        
+        // Se preserva el DFA crudo para manipulación matemática
+        this.rawAutomaton = automaton;
+
         // 4. Crear el Wrapper de Ejecución (O(n)). 'true' indica construir la tabla precomputada para mayor eficiencia.
         this.runAutomaton = new RunAutomaton(automaton, true);
     }
@@ -60,5 +70,23 @@ public class AutomataEngine {
             return false;
         }
         return this.runAutomaton.run(input);
+    }
+
+    /**
+     * Extrae y devuelve una muestra generada algorítmicamente del lenguaje actual.
+     * <p>
+     * Sumamente útil para asistir al usuario final demostrándole visualmente
+     * qué forma tiene una cadena que es estrictament válida para las reglas actuales del AFD.
+     * </p>
+     * 
+     * @return La secuencia binaria válida más corta e identificable capaz de satisfacer al AFD; {@code null} si el lenguaje fuera inherentemente vacío.
+     */
+    public String getExample() {
+        return this.rawAutomaton.getShortestExample(true);
+    }
+    
+    public String getER()
+    {
+        return this.ER;
     }
 }

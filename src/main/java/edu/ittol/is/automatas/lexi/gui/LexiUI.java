@@ -3,6 +3,7 @@ package edu.ittol.is.automatas.lexi.gui;
 import edu.ittol.is.automatas.lexi.core.AutomataEngine;
 import edu.ittol.is.automatas.lexi.utils.ValidationUtils;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class LexiUI extends javax.swing.JFrame
 {
@@ -60,8 +61,9 @@ public class LexiUI extends javax.swing.JFrame
         lblValidate = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        btnGenerateValidString = new javax.swing.JMenuItem();
+        btnViewRegEx = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainFrame"); // NOI18N
@@ -72,8 +74,8 @@ public class LexiUI extends javax.swing.JFrame
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         jPanel2.setFocusable(false);
-        jPanel2.setMaximumSize(new java.awt.Dimension(32767, 120));
-        jPanel2.setPreferredSize(new java.awt.Dimension(400, 100));
+        jPanel2.setMaximumSize(new java.awt.Dimension(400, 50));
+        jPanel2.setPreferredSize(new java.awt.Dimension(400, 50));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,7 +85,7 @@ public class LexiUI extends javax.swing.JFrame
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2);
@@ -107,7 +109,6 @@ public class LexiUI extends javax.swing.JFrame
         jPanel3.setPreferredSize(new java.awt.Dimension(370, 30));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        txtString.setText("jTextField1");
         txtString.setToolTipText("Ingresa una cadena para validar...");
         txtString.setMaximumSize(new java.awt.Dimension(400, 100));
         txtString.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -115,17 +116,9 @@ public class LexiUI extends javax.swing.JFrame
         txtString.setPreferredSize(new java.awt.Dimension(400, 100));
         txtString.addKeyListener(new java.awt.event.KeyAdapter()
         {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                txtStringKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt)
             {
                 txtStringKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                txtStringKeyTyped(evt);
             }
         });
         jPanel3.add(txtString);
@@ -164,6 +157,8 @@ public class LexiUI extends javax.swing.JFrame
         jPanel1.add(jPanel3);
 
         jPanel4.setFocusable(false);
+        jPanel4.setMaximumSize(new java.awt.Dimension(400, 50));
+        jPanel4.setPreferredSize(new java.awt.Dimension(400, 50));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,33 +168,41 @@ public class LexiUI extends javax.swing.JFrame
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel4);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu3.setText("Opciones");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        btnGenerateValidString.setText("Generar cadena válida");
+        btnGenerateValidString.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnGenerateValidStringActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnGenerateValidString);
+
+        btnViewRegEx.setText("Ver Expresión Regular");
+        btnViewRegEx.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnViewRegExActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnViewRegEx);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtStringKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtStringKeyTyped
-    {//GEN-HEADEREND:event_txtStringKeyTyped
-
-    }//GEN-LAST:event_txtStringKeyTyped
-
-    private void txtStringKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtStringKeyPressed
-    {//GEN-HEADEREND:event_txtStringKeyPressed
-
-    }//GEN-LAST:event_txtStringKeyPressed
 
     private void txtStringKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtStringKeyReleased
     {//GEN-HEADEREND:event_txtStringKeyReleased
@@ -222,10 +225,23 @@ public class LexiUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_txtStringKeyReleased
 
+    private void btnViewRegExActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnViewRegExActionPerformed
+    {//GEN-HEADEREND:event_btnViewRegExActionPerformed
+        JOptionPane.showMessageDialog(this, engine.getER(), "Expresión Regular", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnViewRegExActionPerformed
+
+    private void btnGenerateValidStringActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnGenerateValidStringActionPerformed
+    {//GEN-HEADEREND:event_btnGenerateValidStringActionPerformed
+        String cadenaMinima = engine.getExample();
+        txtString.setText(cadenaMinima);
+        txtStringKeyReleased(null);
+    }//GEN-LAST:event_btnGenerateValidStringActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnGenerateValidString;
+    private javax.swing.JMenuItem btnViewRegEx;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
