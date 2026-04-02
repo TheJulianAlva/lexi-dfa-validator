@@ -17,25 +17,26 @@ public class LexiUI extends javax.swing.JFrame
     {
         initComponents();
         this.engine = engine;
+        txtStringKeyReleased(null);
     }
 
     private void setWarning(String textWarning)
     {
-        panValidate.setBackground(Color.yellow);
-        lblValidate.setForeground(Color.black);
+        panValidate.setBackground(new Color(148, 116, 12));
+        lblValidate.setForeground(Color.white);
         lblValidate.setText(textWarning);
     }
 
     private void setValidate()
     {
-        panValidate.setBackground(Color.green);
+        panValidate.setBackground(new Color(52, 92, 24));
         lblValidate.setForeground(Color.white);
         lblValidate.setText("Cadena Válida");
     }
 
     private void setInvalidate()
     {
-        panValidate.setBackground(Color.red);
+        panValidate.setBackground(new Color(117, 9, 9));
         lblValidate.setForeground(Color.white);
         lblValidate.setText("Cadena No Válida");
     }
@@ -65,6 +66,7 @@ public class LexiUI extends javax.swing.JFrame
         btnGenerateValidString = new javax.swing.JMenuItem();
         btnViewRegEx = new javax.swing.JMenuItem();
         btnViewAutomaton = new javax.swing.JMenuItem();
+        btnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lexi");
@@ -114,7 +116,7 @@ public class LexiUI extends javax.swing.JFrame
         txtString.setMaximumSize(new java.awt.Dimension(400, 100));
         txtString.setMinimumSize(new java.awt.Dimension(0, 0));
         txtString.setName("txtString"); // NOI18N
-        txtString.setPreferredSize(new java.awt.Dimension(400, 100));
+        txtString.setPreferredSize(new java.awt.Dimension(300, 100));
         txtString.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyReleased(java.awt.event.KeyEvent evt)
@@ -131,7 +133,7 @@ public class LexiUI extends javax.swing.JFrame
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 6, Short.MAX_VALUE)
+            .addGap(0, 7, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +142,8 @@ public class LexiUI extends javax.swing.JFrame
 
         jPanel3.add(jPanel7);
 
+        panValidate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 3));
+        panValidate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panValidate.setFocusable(false);
         panValidate.setMaximumSize(new java.awt.Dimension(200, 100));
         panValidate.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -148,7 +152,6 @@ public class LexiUI extends javax.swing.JFrame
         panValidate.setLayout(new java.awt.BorderLayout());
 
         lblValidate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValidate.setText("Validate");
         lblValidate.setFocusable(false);
         lblValidate.setName("lblValidate"); // NOI18N
         panValidate.add(lblValidate, java.awt.BorderLayout.CENTER);
@@ -208,6 +211,16 @@ public class LexiUI extends javax.swing.JFrame
         });
         jMenu3.add(btnViewAutomaton);
 
+        btnAbout.setText("Acerca de / Ayuda");
+        btnAbout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAboutActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnAbout);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -253,7 +266,20 @@ public class LexiUI extends javax.swing.JFrame
         automatonForm.setVisible(true);
     }//GEN-LAST:event_btnViewAutomatonActionPerformed
 
+    private void btnAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAboutActionPerformed
+    {//GEN-HEADEREND:event_btnAboutActionPerformed
+        String message = """
+                         Este validador verifica las cadenas ingresadas cumplan con condiciones descritas de un lenguaje específico:
+                         1. El alfabeto está compuesto por {0 , 1}.
+                         2. Los últimos dos caracteres de la cadena sean exactamente '10'.
+                             --- ó ---
+                            Que termine con un '1' seguido de cualquier otro par de caracteres extra.""";
+        
+        JOptionPane.showMessageDialog(this, message, "¿Cómo funciona?", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnAboutActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnAbout;
     private javax.swing.JMenuItem btnGenerateValidString;
     private javax.swing.JMenuItem btnViewAutomaton;
     private javax.swing.JMenuItem btnViewRegEx;

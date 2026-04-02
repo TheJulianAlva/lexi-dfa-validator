@@ -22,44 +22,8 @@ public class AutomatonUI extends javax.swing.JFrame
     {
         initComponents();
         this.engine = engine;
-        init();
-    }
-
-    public void init()
-    {
-        int width = this.getPreferredSize().width;
-        int height = this.getPreferredSize().height;
-        try
-        {
-            String apiURL = engine.getAutomatonImageUrl();
-            System.out.println("Cargando imagen desde: " + apiURL);
-            
-            // Requerido: Forzar User-Agent para que el API no prohíba descargas automáticas de Java
-            java.net.URLConnection connection = new java.net.URL(apiURL).openConnection();
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-            
-            // Java descarga velozmente la imagen del grafo renderizada y la carga en memoria
-            java.awt.image.BufferedImage img = javax.imageio.ImageIO.read(connection.getInputStream());
-
-            if (img != null) {
-                // Escalar localmente al tamaño de 400x300 usando un algoritmo suave para evitar pixeleo
-                java.awt.Image imagenEscalada = img.getScaledInstance(width-40, height-40, java.awt.Image.SCALE_SMOOTH);
-
-                // Asignar al JLabel
-                lblAutomatonView.setIcon(new javax.swing.ImageIcon(imagenEscalada));
-                lblAutomatonView.setText("");
-                lblAutomatonView.revalidate();
-                lblAutomatonView.repaint();
-            } else {
-                System.out.println("Error: Quickchart regresó nulo (formato ilegible).");
-            }
-
-        } catch (Exception e)
-        {
-            System.out.println("Error al obtener la gráfica: requiere conexión a internet.");
-            System.out.println(e.getMessage());
-        }
-
+        // Ahora simplemente arrastra un JLabel en el diseño gráfico (Matisse), 
+        // haz clic derecho -> Properties -> icon -> Import to Project... y selecciona tu imagen manualmente.
     }
 
     /**
@@ -77,12 +41,14 @@ public class AutomatonUI extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Autómata");
         setAlwaysOnTop(true);
+        setMinimumSize(new java.awt.Dimension(450, 380));
         setName("AutomatonForm"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 300));
+        setPreferredSize(new java.awt.Dimension(450, 380));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
         lblAutomatonView.setBackground(new java.awt.Color(255, 51, 102));
+        lblAutomatonView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/automata-finito-det.jff.png"))); // NOI18N
         lblAutomatonView.setMaximumSize(new java.awt.Dimension(400, 300));
         lblAutomatonView.setMinimumSize(new java.awt.Dimension(400, 300));
         lblAutomatonView.setPreferredSize(new java.awt.Dimension(400, 300));
