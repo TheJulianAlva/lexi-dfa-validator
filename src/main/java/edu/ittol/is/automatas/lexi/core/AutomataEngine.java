@@ -91,17 +91,4 @@ public class AutomataEngine {
     public String getER() {
         return ER;
     }
-
-    /**
-     * Provee una descripción en lenguaje natural y comprensible sobre el objetivo de la aplicación.
-     * Útil para ser mostrada en componentes visuales como un botón de Ayuda ("Help"), Tooltips, o paneles informativos.
-     * 
-     * @return Cadena de texto explicando la regla de validación sin usar jerga matemática.
-     */
-    public String getExplanation() {
-        return "Este validador verifica que tu código binario cumpla una condición secreta al finalizar sus dígitos:\n"
-             + "1. Que los últimos dos números sean exactamente '10'.\n"
-             + "--- Ó ---\n"
-             + "2. Que termine con un '1' seguido obligatoriamente de cualquier otro par extra (ej. 100, 101, 110 o 111).";
-    }
 }
