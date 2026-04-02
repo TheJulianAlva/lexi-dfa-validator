@@ -3,6 +3,8 @@ package edu.ittol.is.automatas.lexi.core;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import dk.brics.automaton.RunAutomaton;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * Componente principal que encapsula el motor de autómata de la lógica de negocio (Capa Modelo).
@@ -85,8 +87,38 @@ public class AutomataEngine {
         return this.rawAutomaton.getShortestExample(true);
     }
     
-    public String getER()
-    {
-        return this.ER;
+    /**
+     * Expone de solo-lectura la Expresión Regular en uso.
+     * <p>
+     * Proporciona la representación literal de base teórica con la que fue pre-construido y compilado el motor.
+     * </p>
+     * 
+     * @return String identificando a la constante de Expresión Regular que domina el lenguaje actual.
+     */
+    public String getER() {
+        return ER;
+    }
+
+    /**
+     * Genera bajo-demanda una URL segura con el Grafo Dirigido del AFD renderizado como imagen.
+     * <p>
+     * Extrae la estructura topológica del Autómata Mínimo cruso usando el método '.toDot()', preparándola 
+     * para interaccionar por petición de internet HTTP contra un API visual (QuickChart) retornando
+     * su representación real en formato de imágen interpretada nativamente por un ImageIcon de Swing.
+     * </p>
+     * 
+     * @return String resolviéndose de forma integral como URL absoluta; {@code null} Si ocurriera fallo de codificación web.
+     */
+    public String getAutomatonImageUrl() {
+        String dotCode = this.rawAutomaton.toDot();
+        try {
+            // Limpiamos los saltos de línea y formateamos a formato URL Segura (Encode) para compatibilizar la API
+            String uriEncoded = URLEncoder.encode(dotCode.replaceAll("\n", ""), "UTF-8");
+            // FORZAMOS format=png, ya que ImageIO de Java devuelve nulo si lee un formato vectorial (SVG)
+            return "https://quickchart.io/graphviz?format=png&graph=" + uriEncoded;
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("Falla crítica en codificación estándar UTF-8 al instanciar el grafo visual.");
+            return null;
+        }
     }
 }

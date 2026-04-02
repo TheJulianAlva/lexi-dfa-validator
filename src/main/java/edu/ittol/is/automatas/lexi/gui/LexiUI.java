@@ -64,11 +64,12 @@ public class LexiUI extends javax.swing.JFrame
         jMenu3 = new javax.swing.JMenu();
         btnGenerateValidString = new javax.swing.JMenuItem();
         btnViewRegEx = new javax.swing.JMenuItem();
+        btnViewAutomaton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lexi");
         setName("mainFrame"); // NOI18N
         setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setFocusable(false);
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
@@ -177,7 +178,7 @@ public class LexiUI extends javax.swing.JFrame
 
         jMenu3.setText("Opciones");
 
-        btnGenerateValidString.setText("Generar cadena válida");
+        btnGenerateValidString.setText("Generar Cadena Válida");
         btnGenerateValidString.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -197,6 +198,16 @@ public class LexiUI extends javax.swing.JFrame
         });
         jMenu3.add(btnViewRegEx);
 
+        btnViewAutomaton.setText("Ver Autómata");
+        btnViewAutomaton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnViewAutomatonActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnViewAutomaton);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -207,7 +218,6 @@ public class LexiUI extends javax.swing.JFrame
     private void txtStringKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtStringKeyReleased
     {//GEN-HEADEREND:event_txtStringKeyReleased
         String input = txtString.getText();
-        System.out.println(input);
         if (!ValidationUtils.isStrictBinary(input))
         {
             setWarning("Caracteres no válidos");
@@ -237,8 +247,15 @@ public class LexiUI extends javax.swing.JFrame
         txtStringKeyReleased(null);
     }//GEN-LAST:event_btnGenerateValidStringActionPerformed
 
+    private void btnViewAutomatonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnViewAutomatonActionPerformed
+    {//GEN-HEADEREND:event_btnViewAutomatonActionPerformed
+        AutomatonUI automatonForm = new AutomatonUI(this.engine);
+        automatonForm.setVisible(true);
+    }//GEN-LAST:event_btnViewAutomatonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnGenerateValidString;
+    private javax.swing.JMenuItem btnViewAutomaton;
     private javax.swing.JMenuItem btnViewRegEx;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
