@@ -61,8 +61,8 @@ public class LexiUI extends javax.swing.JFrame
         panValidate = new javax.swing.JPanel();
         lblValidate = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
         btnGenerateValidString = new javax.swing.JMenuItem();
         btnViewRegEx = new javax.swing.JMenuItem();
         btnViewAutomaton = new javax.swing.JMenuItem();
@@ -179,7 +179,7 @@ public class LexiUI extends javax.swing.JFrame
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jMenu3.setText("Opciones");
+        jMenu.setText("Opciones");
 
         btnGenerateValidString.setText("Generar Cadena Válida");
         btnGenerateValidString.addActionListener(new java.awt.event.ActionListener()
@@ -189,7 +189,7 @@ public class LexiUI extends javax.swing.JFrame
                 btnGenerateValidStringActionPerformed(evt);
             }
         });
-        jMenu3.add(btnGenerateValidString);
+        jMenu.add(btnGenerateValidString);
 
         btnViewRegEx.setText("Ver Expresión Regular");
         btnViewRegEx.addActionListener(new java.awt.event.ActionListener()
@@ -199,7 +199,7 @@ public class LexiUI extends javax.swing.JFrame
                 btnViewRegExActionPerformed(evt);
             }
         });
-        jMenu3.add(btnViewRegEx);
+        jMenu.add(btnViewRegEx);
 
         btnViewAutomaton.setText("Ver Autómata");
         btnViewAutomaton.addActionListener(new java.awt.event.ActionListener()
@@ -209,7 +209,7 @@ public class LexiUI extends javax.swing.JFrame
                 btnViewAutomatonActionPerformed(evt);
             }
         });
-        jMenu3.add(btnViewAutomaton);
+        jMenu.add(btnViewAutomaton);
 
         btnAbout.setText("Acerca de / Ayuda");
         btnAbout.addActionListener(new java.awt.event.ActionListener()
@@ -219,11 +219,11 @@ public class LexiUI extends javax.swing.JFrame
                 btnAboutActionPerformed(evt);
             }
         });
-        jMenu3.add(btnAbout);
+        jMenu.add(btnAbout);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar.add(jMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -284,8 +284,8 @@ public class LexiUI extends javax.swing.JFrame
     private javax.swing.JMenuItem btnViewAutomaton;
     private javax.swing.JMenuItem btnViewRegEx;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
